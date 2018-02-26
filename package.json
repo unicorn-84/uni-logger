@@ -1,0 +1,20 @@
+{
+  "name": "unilog",
+  "version": "1.0.0",
+  "description": "Just a logger",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unicorn-84/unilog.git"
+  },
+  "keywords": [],
+  "author": "WebUnicorns",
+  "engines": {
+    "node": "8.9.1"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/unicorn-84/unilog/issues"
+  },
+  "homepage": "https://github.com/unicorn-84/unilog#readme"
+}
