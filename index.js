@@ -8,12 +8,12 @@ function appendFile(content, cb) {
   const day = date.getDate();
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
-  const name = `${day}-${month}-${year}`;
+  const dateStamp = `${day}-${month}-${year}`;
   const hours = date.getHours();
   const minutes = date.getMinutes();
   const seconds = date.getSeconds();
-  const pattern = `[${hours}:${minutes}:${seconds}]`;
-  fs.appendFile(`${dir}/${name}`, `${pattern} ${content}\n`, (error) => {
+  const timeStamp = `[${hours}:${minutes}:${seconds}]`;
+  fs.appendFile(`${dir}/${dateStamp}`, `${timeStamp} ${content}\n`, (error) => {
     if (error) {
       cb(error);
       return;
