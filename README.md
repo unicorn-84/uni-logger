@@ -1,2 +1,2 @@
-# unilog
+# uni-logger
 Just a logger

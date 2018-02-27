@@ -1,22 +1,24 @@
 {
-  "name": "unilog",
-  "version": "1.0.0",
+  "name": "uni-logger",
+  "version": "0.0.0",
   "description": "Just a logger",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/unicorn-84/unilog.git"
+    "url": "git+https://github.com/unicorn-84/uni-logger.git"
   },
-  "keywords": [],
-  "author": "WebUnicorns",
+  "keywords": [
+    "logger"
+  ],
+  "author": "unicorn-84",
   "engines": {
     "node": "8.9.1"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/unicorn-84/unilog/issues"
+    "url": "https://github.com/unicorn-84/uni-logger/issues"
   },
-  "homepage": "https://github.com/unicorn-84/unilog#readme",
+  "homepage": "https://github.com/unicorn-84/uni-logger#readme",
   "devDependencies": {
     "eslint": "^4.18.1",
     "eslint-config-airbnb-base": "^12.1.0",
