@@ -1,7 +1,7 @@
 const fs = require('fs');
-const path = require('path');
+const appRootDir = require('app-root-dir').get();
 
-const dir = path.join(__dirname, 'logs');
+const dir = `${appRootDir}/logs`;
 
 function appendFile(content, cb) {
   const date = new Date();
