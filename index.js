@@ -13,7 +13,7 @@ function appendFile(content, cb) {
   const minutes = date.getMinutes();
   const seconds = date.getSeconds();
   const timeStamp = `[${hours}:${minutes}:${seconds}]`;
-  fs.appendFile(`${dir}/${dateStamp}`, `${timeStamp} ${content}\n`, (error) => {
+  fs.appendFile(`${dir}/${dateStamp}`, `${timeStamp} ${content}`, (error) => {
     if (error) {
       cb(error);
       return;
