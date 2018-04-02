@@ -1,19 +1,9 @@
 const fs = require('fs');
 const appRootDir = require('app-root-dir').get();
-
-const dir = `${appRootDir}/logs`;
+const stamper = require('./modules/stamper');
 
 function appendFile(content, cb) {
-  const date = new Date();
-  const day = date.getDate();
-  const month = date.getMonth() + 1;
-  const year = date.getFullYear();
-  const dateStamp = `${day}-${month}-${year}`;
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  const seconds = date.getSeconds();
-  const timeStamp = `[${hours}:${minutes}:${seconds}]`;
-  fs.appendFile(`${dir}/${dateStamp}`, `${timeStamp} ${content}`, (error) => {
+  fs.appendFile(`${appRootDir}/logs/${stamper.getDateStamp()}`, `${stamper.getTimeStamp()} ${content}`, (error) => {
     if (error) {
       cb(error);
       return;
@@ -23,7 +13,7 @@ function appendFile(content, cb) {
 }
 
 function makeDir(content, cb) {
-  fs.mkdir(dir, (error) => {
+  fs.mkdir(`${appRootDir}/logs`, (error) => {
     if (error) {
       cb(error);
       return;
@@ -33,7 +23,7 @@ function makeDir(content, cb) {
 }
 
 function checkDirectory(content, cb) {
-  fs.access(dir, (error) => {
+  fs.access(`${appRootDir}/logs`, (error) => {
     if (error && error.code === 'ENOENT') {
       makeDir(content, cb);
       return;
