@@ -1,9 +1,9 @@
 const fs = require('fs');
-const appRootDir = require('app-root-dir').get();
 const stamper = require('./modules/stamper');
+const path = require('path');
 
 function appendFile(content, cb) {
-  fs.appendFile(`${appRootDir}/logs/${stamper.getDateStamp()}`, `${stamper.getTimeStamp()} ${content}`, (error) => {
+  fs.appendFile(path.resolve(this.path, stamper.getDateStamp()), `${stamper.getTimeStamp()} ${content}`, (error) => {
     if (error) {
       cb(error);
       return;
@@ -13,32 +13,49 @@ function appendFile(content, cb) {
 }
 
 function makeDir(content, cb) {
-  fs.mkdir(`${appRootDir}/logs`, (error) => {
+  fs.mkdir(path.resolve(this.path), (error) => {
     if (error) {
       cb(error);
       return;
     }
-    appendFile(content, cb);
+    appendFile.call(this, content, cb);
   });
 }
 
 function checkDirectory(content, cb) {
-  fs.access(`${appRootDir}/logs`, (error) => {
+  fs.access(path.resolve(this.path), (error) => {
     if (error && error.code === 'ENOENT') {
-      makeDir(content, cb);
+      makeDir.call(this, content, cb);
       return;
     } else if (error) {
       cb(error);
       return;
     }
-    appendFile(content, cb);
+    appendFile.call(this, content, cb);
   });
 }
 
-module.exports.log = (content) => {
-  checkDirectory(content, (error) => {
+function checkOptions(options) {
+  if (typeof options !== 'object') {
+    throw new TypeError(`uni-logger "options" must be an object, got ${typeof options} instead.`);
+  }
+  if (!Object.prototype.hasOwnProperty.call(options, 'path')) {
+    throw new TypeError('uni-logger "options" must have a "path" property.');
+  }
+}
+
+function Logger(options) {
+  checkOptions(options);
+  this.path = `${options.path}`;
+}
+
+Logger.prototype.log = function log(content) {
+  checkDirectory.call(this, content, (error) => {
     if (error) {
       console.error(error);
     }
+    console.log('Finish');
   });
 };
+
+module.exports = Logger;
