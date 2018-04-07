@@ -54,7 +54,6 @@ Logger.prototype.log = function log(content) {
     if (error) {
       console.error(error);
     }
-    console.log('Finish');
   });
 };
 
